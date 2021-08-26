@@ -13,58 +13,58 @@ namespace API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ClientController : ControllerBase
+    public class CustomerController : ControllerBase
     {
-        private readonly IClientRepository iclientrepository;
-        public ClientController(IClientRepository _iclientrepository)
+        private readonly ICustomerRepository icustomerrepository;
+        public CustomerController(ICustomerRepository _icustomerrepository)
         {
-            iclientrepository = _iclientrepository;
+            icustomerrepository = _icustomerrepository;
         }
         // GET: api/<ClientController>
         [HttpGet("/GetAll")]
         public async Task<IEnumerable<object>> GetAll()
         {
-          return   await iclientrepository.GetAllAsyc();
+          return   await icustomerrepository.GetAllAsyc();
              
         }
 
         // POST api/<ClientController>
         [HttpPost("/Add")]
-        public async Task<Response> Add(Client model)
+        public async Task<Response> Add(Customer model)
         {
             var apiResp = new Response { ResponseType = 0 };
-            apiResp.ResponseType = await iclientrepository.InsertAsyc(model);
+            apiResp.ResponseType = await icustomerrepository.InsertAsyc(model);
             return apiResp;
         }
 
         // PUT api/<ClientController>/5
         [HttpPut("/Update")]
-        public async Task<Response> Update(Client model)
+        public async Task<Response> Update(Customer model)
         {
             var apiResp = new Response { ResponseType = 0 };
-            apiResp.ResponseType = await iclientrepository.UpdateAsyc(model);
+            apiResp.ResponseType = await icustomerrepository.UpdateAsyc(model);
             return apiResp;
         }
         // Delete api/<ClientController>/5
         [HttpDelete("/Delete")]
-        public async Task<Response> Delete(int  clientID)
+        public async Task<Response> Delete(int customerID)
         {
             var apiResp = new Response { ResponseType = 0 };
-            apiResp.ResponseType = await iclientrepository.DeleteAsyc(clientID);
+            apiResp.ResponseType = await icustomerrepository.DeleteAsyc(customerID);
             return apiResp;
         }
         // GET: api/<ClientController>
         [HttpGet("/GetByID")]
-        public async Task<object> GetByID(int clientID)
+        public async Task<object> GetByID(int customerID)
         {
-            return await iclientrepository.GetByIDAysc(clientID);
+            return await icustomerrepository.GetByIDAysc(customerID);
         }
 
         // GET: api/<ClientController>
-        [HttpGet("/GetGender")]
-        public async Task<IEnumerable<object>> GetGender()
+        [HttpGet("/GetTypes")]
+        public async Task<IEnumerable<object>> GetTypes()
         {
-            return await iclientrepository.GetGender();
+            return await icustomerrepository.GetTypes();
 
         }
     }
