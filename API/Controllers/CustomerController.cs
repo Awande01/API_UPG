@@ -15,6 +15,7 @@ namespace API.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        static readonly log4net.ILog _log4net = log4net.LogManager.GetLogger(typeof(CustomerController));
         private readonly ICustomerRepository icustomerrepository;
         public CustomerController(ICustomerRepository _icustomerrepository)
         {
@@ -28,8 +29,15 @@ namespace API.Controllers
         [HttpGet("/GetAll")]
         public async Task<IEnumerable<object>> GetAll()
         {
-          return   await icustomerrepository.GetAllAsyc();
-             
+            try
+            {
+                return await icustomerrepository.GetAllAsyc();
+            }
+            catch(Exception ex)
+            {
+                _log4net.Error(ex.Message);
+                return null;
+            }            
         }
         /// <summary>
         /// add new customer
@@ -41,8 +49,17 @@ namespace API.Controllers
         public async Task<Response> Add(Customer model)
         {
             var apiResp = new Response { ResponseType = 0 };
-            apiResp.ResponseType = await icustomerrepository.InsertAsyc(model);
-            return apiResp;
+            try
+            {
+
+                apiResp.ResponseType = await icustomerrepository.InsertAsyc(model);
+                return apiResp;
+            }
+            catch (Exception ex)
+            {
+                _log4net.Error(ex.Message);
+                return apiResp;
+            }
         }
         /// <summary>
         /// update customer details
@@ -54,8 +71,16 @@ namespace API.Controllers
         public async Task<Response> Update(Customer model)
         {
             var apiResp = new Response { ResponseType = 0 };
-            apiResp.ResponseType = await icustomerrepository.UpdateAsyc(model);
-            return apiResp;
+            try
+            {
+                apiResp.ResponseType = await icustomerrepository.UpdateAsyc(model);
+                return apiResp;
+            }
+            catch(Exception ex)
+            {
+                _log4net.Error(ex.Message);
+                return apiResp;
+            }
         }
         /// <summary>
         /// soft delete customer
@@ -67,8 +92,16 @@ namespace API.Controllers
         public async Task<Response> Delete(int customerID)
         {
             var apiResp = new Response { ResponseType = 0 };
-            apiResp.ResponseType = await icustomerrepository.DeleteAsyc(customerID);
-            return apiResp;
+            try
+            {
+                apiResp.ResponseType = await icustomerrepository.DeleteAsyc(customerID);
+                return apiResp;
+            }
+            catch(Exception ex)
+            {
+                _log4net.Error(ex.Message);
+                return apiResp;
+            }
         }
         /// <summary>
         /// get customer by customer id
@@ -79,7 +112,14 @@ namespace API.Controllers
         [HttpGet("/GetByID")]
         public async Task<object> GetByID(int customerID)
         {
-            return await icustomerrepository.GetByIDAysc(customerID);
+            try
+            {
+                return await icustomerrepository.GetByIDAysc(customerID);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
         /// <summary>
         /// populate list of customer types
@@ -89,8 +129,15 @@ namespace API.Controllers
         [HttpGet("/GetTypes")]
         public async Task<IEnumerable<object>> GetTypes()
         {
-            return await icustomerrepository.GetTypes();
-
+            try
+            {
+                return await icustomerrepository.GetTypes();
+            }
+            catch(Exception ex)
+            {
+                _log4net.Error(ex.Message);
+                return null;
+            }
         }
     }
 }
