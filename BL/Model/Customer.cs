@@ -6,7 +6,7 @@ namespace BL.Model
 {
     public class Customer 
     {
-        public int CustomerID { get; set; }
+        public int? CustomerID { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public int FK_TypeID { get; set; }
