@@ -7,5 +7,6 @@ namespace BL.ApiResponse
     public class Response
     {
         public int ResponseType { get; set; }
+        public string ResponseCode { get; set; }
     }
 }
