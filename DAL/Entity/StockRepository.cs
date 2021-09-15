@@ -69,5 +69,16 @@ namespace DAL.Entity
                 return result.AsList<StockMaster>();
             }
         }
+        public async Task<IReadOnlyCollection<StockMaster>> GetByIDAysc(int stocmasterID)
+        {
+            using (var connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@StockMasterID", stocmasterID);
+                var result = await SqlMapper.QueryAsync<StockMaster>(connection, "[dbo].[GetDetorsMasterByID]", parameter, commandType: System.Data.CommandType.StoredProcedure);
+                return result.AsList<StockMaster>();
+            }
+        }
     }
 }

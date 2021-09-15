@@ -47,12 +47,12 @@ namespace API.Controllers
             apiResp.ResponseType = await istockpository.UpdateAsyc(model);
             return apiResp;
         }
-        //// GET: api/<ClientController>
-        //[HttpGet("/GetDetorByID")]
-        //public async Task<object> GetDetorByID(int clientID)
-        //{
-        //    return await istockpository.GetByIDAysc(clientID);
-        //}
+        // GET: api/<ClientController>
+        [HttpGet("/GetDetorByID")]
+        public async Task<object> GetDetorByID(int id)
+        {
+            return await istockpository.GetByIDAysc(id);
+        }
         // POST api/<ClientController>
         [HttpPost("/AddStockTransaction")]
         public async Task<Response> AddStockTransaction(StockTransaction model)
@@ -70,11 +70,11 @@ namespace API.Controllers
             apiResp.ResponseType = await itransactionrepository.UpdateAsyc(model);
             return apiResp;
         }
-        //// GET: api/<ClientController>
-        //[HttpGet("/GetStockTransactionByID")]
-        //public async Task<object> GetStockTransactionByID(int clientID)
-        //{
-        //    return await itransactionrepository.GetByIDAysc(clientID);
-        //}
+        // GET: api/<ClientController>
+        [HttpGet("/GetStockTransactionByID")]
+        public async Task<object> GetStockTransactionByID(int id)
+        {
+            return await itransactionrepository.GetByIDAysc(id);
+        }
     }
 }

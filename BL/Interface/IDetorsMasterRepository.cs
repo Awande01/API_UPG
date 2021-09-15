@@ -10,6 +10,5 @@ namespace BL.Interface
     {
         Task<string> InsertAsyc(DetorsMaster model);
         Task<IReadOnlyList<DetorsMaster>> GetAllAsyc();
-        Task<IReadOnlyCollection<DetorsMaster>> GetByIDAysc(int id);
     }
 }

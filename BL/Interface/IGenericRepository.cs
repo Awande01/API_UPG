@@ -7,7 +7,7 @@ namespace BL.Interface
 {
     public  interface  IGenericRepository<T> where T:class
     {
-
+        Task<IReadOnlyCollection<T>> GetByIDAysc(int id);
         Task<int> UpdateAsyc(T model);
 
     }

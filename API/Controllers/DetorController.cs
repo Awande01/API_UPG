@@ -49,9 +49,9 @@ namespace API.Controllers
         }
         // GET: api/<ClientController>
         [HttpGet("/GetDetorByID")]
-        public async Task<object> GetDetorByID(int clientID)
+        public async Task<object> GetDetorByID(int id)
         {
-            return await idetorspository.GetByIDAysc(clientID);
+            return await idetorspository.GetByIDAysc(id);
         }
         // POST api/<ClientController>
         [HttpPost("/AddDetorTransaction")]
@@ -72,9 +72,9 @@ namespace API.Controllers
         }
         // GET: api/<ClientController>
         [HttpGet("/GetDetorTransactionByID")]
-        public async Task<object> GetDetorTransactionByID(int clientID)
+        public async Task<object> GetDetorTransactionByID(int id)
         {
-            return await idetorspository.GetByIDAysc(clientID);
+            return await idetorspository.GetByIDAysc(id);
         }
     }
 }

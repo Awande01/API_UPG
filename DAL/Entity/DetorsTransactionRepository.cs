@@ -61,6 +61,16 @@ namespace DAL.Entity
                 return result.AsList<DetorsTransaction>();
             }
         }
+        public async Task<IReadOnlyCollection<DetorsTransaction>> GetByIDAysc(int detorsTransactionID)
+        {
+            using (var connection = new SqlConnection(iconfiguarion.GetConnectionString("DefaultConnection")))
+            {
+                DynamicParameters parameter = new DynamicParameters();
+                parameter.Add("@DetorsTransactionID", detorsTransactionID);
+                var result = await SqlMapper.QueryAsync<DetorsTransaction>(connection, "[dbo].[GetDetorTransaction]", parameter, commandType: CommandType.StoredProcedure);
+                return result.AsList<DetorsTransaction>();
+            }
+        }
     }
 }
 
